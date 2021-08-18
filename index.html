@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Visualization</title>
+  </head>
+  <body>
+    <div class="heading">Sorting Algorithms Visualization</div>
+    <div id="root" class="root">
+      <div class="root-inner" id="root-inner"></div>
+    </div>
+    <div class="controls">
+      <div class="select-wrapper">
+        <select name="Sorting Algorithm" id="select-algo">
+          <option value="ssort">Selection Sort</option>
+          <option value="bsort">Bubble Sort</option>
+          <option value="isort">Insertion Sort</option>
+        </select>
+      </div>
+      <div class="play-wrapper">
+        <button class="play-btn" id="play-btn">Play</button>
+      </div>
+      <div class="timing-wrapper">
+        <button class="timing-btn" id="time-up">+</button>
+        <span class="timing-text">600ms</span>
+        <button class="timing-btn" id="time-down">-</button>
+      </div>
+      <div class="new-arr-wrapper">
+        <button class="random-btn" id="random-btn">New Sort Data</button>
+      </div>
+      <div class="speed-wrapper">
+        <button class="speed-btn" id="speed-up">+</button>
+        <span class="speed-btn" id="speed-text">500</span>
+        <button class="speed-btn" id="speed-down">-</button>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
