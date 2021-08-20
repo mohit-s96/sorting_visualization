@@ -1,4 +1,5 @@
-var ghpages = require("gh-pages");
+const fs = require("fs");
+const ghpages = require("gh-pages");
 const { exec } = require("child_process");
 
 exec("npm run build", (error, stdout, stderr) => {
@@ -11,6 +12,9 @@ exec("npm run build", (error, stdout, stderr) => {
     return;
   }
   console.log(`stdout: ${stdout}`);
+
+  readWriteSync();
+
   ghpages.publish("dist", function (err) {
     if (err) {
       console.log(err);
@@ -19,3 +23,16 @@ exec("npm run build", (error, stdout, stderr) => {
     }
   });
 });
+function readWriteSync() {
+  try {
+    const data = fs.readFileSync("dist/index.html", "utf-8");
+
+    data = data.replace(/="\//gm, '="');
+
+    fs.writeFileSync("dist/index.html", newValue, "utf-8");
+
+    console.log("Updated index.html");
+  } catch (e) {
+    console.log(e);
+  }
+}
