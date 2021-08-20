@@ -3,5 +3,8 @@
   "[typescript]": {
     "editor.autoClosingBrackets": "always"
   },
+  "[javascript]": {
+    "editor.autoClosingBrackets": "always"
+  },
   "editor.autoClosingQuotes": "always"
 }
