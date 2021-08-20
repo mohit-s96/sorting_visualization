@@ -19,6 +19,7 @@ let arrBuffer: Hash = {};
 let pauseIndex: number = -1;
 let isPlaying = false;
 let animSpeed: number = 500;
+let animationEnded = false;
 const cbArray: Array<() => void> = [];
 
 // render function
@@ -72,6 +73,7 @@ function _draw(n: number, anim: Array<any>): void {
       _draw(x, anim);
     }, animSpeed);
   } else {
+    animationEnded = true;
     isPlaying = false;
     cbArray.forEach((x) => x());
     if (currentTimerId !== -1) clearTimeout(currentTimerId);
@@ -81,6 +83,7 @@ function _draw(n: number, anim: Array<any>): void {
 
 export function drawToScreen(): void {
   isPlaying = true;
+  animationEnded = false;
   cbArray.forEach((x) => x());
 
   _draw(0, currentRenderData);
@@ -97,7 +100,7 @@ export function pauseAnimation() {
 
 export function resumeAnimation() {
   isPlaying = true;
-
+  animationEnded = false;
   _draw(pauseIndex, currentRenderData);
 }
 
@@ -118,6 +121,14 @@ export function changeSpeed(v: number, flag: boolean) {
 
 export function getCurrentSpeed() {
   return animSpeed;
+}
+
+export function cancelCurrentAnimation() {
+  if (currentTimerId !== -1) clearTimeout(currentTimerId);
+}
+
+export function hasAnimationEnded() {
+  return animationEnded;
 }
 
 export default render;

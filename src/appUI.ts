@@ -1,6 +1,8 @@
 import render, {
+  cancelCurrentAnimation,
   changeSpeed,
   getCurrentSpeed,
+  hasAnimationEnded,
   isRendering,
   pauseAnimation,
   resumeAnimation,
@@ -98,9 +100,15 @@ function initApp(arr: Array<number>): void {
 
   playBtn!.onclick = () => {
     if (isRendering()) {
+      console.log("pause");
+
       pauseAnimation();
     } else {
       resumeAnimation();
+      if (hasAnimationEnded()) {
+        cancelCurrentAnimation();
+        initApp(arr);
+      }
     }
     playBtn!.textContent = isRendering() ? "Pause" : "Play";
   };

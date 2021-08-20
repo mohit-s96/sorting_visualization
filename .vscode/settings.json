@@ -1,0 +1,7 @@
+{
+  "editor.autoClosingBrackets": "always",
+  "[typescript]": {
+    "editor.autoClosingBrackets": "always"
+  },
+  "editor.autoClosingQuotes": "always"
+}
