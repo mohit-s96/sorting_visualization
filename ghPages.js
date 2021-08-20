@@ -25,9 +25,9 @@ exec("npm run build", (error, stdout, stderr) => {
 });
 function readWriteSync() {
   try {
-    const data = fs.readFileSync("dist/index.html", "utf-8");
+    let data = fs.readFileSync("dist/index.html", "utf-8");
 
-    data = data.replace(/="\//gm, '="');
+    let newValue = data.replace(/="\//gm, '="');
 
     fs.writeFileSync("dist/index.html", newValue, "utf-8");
 
