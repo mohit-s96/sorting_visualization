@@ -30,8 +30,18 @@ function handleAnimationTiming(flag: boolean, timeTextNode: HTMLSpanElement) {
     "--animation-time"
   );
 
-  val = val.slice(0, -2); // trim the trailing "ms" from the string
-  let time = +val;
+  let time: number | null = null;
+
+  if (val.indexOf("ms") === -1) {
+    val = val.replace("s", "");
+    time = +val;
+    time = time * 1000;
+  }
+
+  if (!time) {
+    val = val.slice(0, -2); // trim the trailing "ms" from the string
+    time = +val;
+  }
 
   if (flag) {
     time += 100;
